@@ -3,12 +3,10 @@ import Image from 'next/image';
 import images from '../../constants/images';
 import { navlinks } from '../../constants/navlinks';
 import { HiMenuAlt4, HiX } from 'react-icons/hi';
-import { useState } from 'react';
+import { useState, FC } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-type Props = {};
-
-const Navbar = (props: Props) => {
+const Navbar: FC = () => {
     const [toggle, setToggle] = useState(false);
 
     return (
