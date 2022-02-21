@@ -1,18 +1,19 @@
+import { ComponentType } from 'react';
 import { NavigationDots, SocialMedia } from '../components';
 
-const AppWrap = (
+export function AppWrap<T>(
     idName: string,
     classNames: string,
-    Component: any,
+    Component: ComponentType<T>,
     sectionId: number
-) =>
-    function HOC(props: any) {
+) {
+    return function HOC(hocProps: T) {
         return (
             <div id={idName} className={`app__container ${classNames}`}>
                 <SocialMedia />
 
                 <div className='app__wrapper app__flex'>
-                    <Component {...props} />
+                    <Component {...hocProps} />
 
                     <div className='copyright'>
                         <p className='p_text'>@2022 Michel</p>
@@ -24,5 +25,6 @@ const AppWrap = (
             </div>
         );
     };
+}
 
 export default AppWrap;
