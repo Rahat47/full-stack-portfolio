@@ -1,0 +1,174 @@
+.work {
+    flex: 1;
+    width: 100%;
+    flex-direction: column;
+}
+
+.work_filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+
+    margin: 4rem 0 2rem;
+
+    @media screen and (max-width: 768px) {
+        justify-content: center;
+        margin: 2rem 0;
+    }
+
+    &_item {
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        background-color: #fff;
+        color: #000;
+        font-weight: 800;
+        cursor: pointer;
+        transition: all 300ms ease;
+        margin: 0.5rem;
+
+        &__active {
+            background-color: var(--secondary-color);
+            color: #fff;
+        }
+
+        &:hover {
+            background-color: var(--secondary-color);
+            color: #fff;
+        }
+
+        @media screen and (min-width: 2000px) {
+            padding: 1rem 2rem;
+            border-radius: 0.85rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            padding: 0.5rem 1rem;
+        }
+    }
+}
+
+.work_portfolio {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    &_item {
+        width: 270px;
+        flex-direction: column;
+
+        margin: 2rem;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        background-color: #fff;
+        color: #000;
+        cursor: pointer;
+        transition: all 300ms ease;
+
+        &:hover {
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+        }
+
+        &_img {
+            width: 100%;
+            height: 230px;
+            position: relative;
+
+            &_hover {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+
+                background-color: rgba(0, 0, 0, 0.5);
+                border-radius: 0.5rem;
+                opacity: 0;
+                transition: all 300ms ease;
+
+                div {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    color: #fff;
+
+                    margin: 1rem;
+                    font-family: var(--font-base);
+                    font-weight: 800;
+                    cursor: pointer;
+
+                    svg {
+                        width: 50%;
+                        height: 50%;
+                        color: var(--white-color);
+                    }
+                }
+            }
+
+            & > span {
+                width: 100% !important;
+                height: 100% !important;
+                border-radius: 0.5rem;
+            }
+
+            @media screen and (min-width: 2000px) {
+                height: 350px;
+            }
+        }
+
+        &_info {
+            padding: 0.5rem;
+            width: 100%;
+            position: relative;
+            flex-direction: column;
+
+            h4 {
+                margin-top: 1rem;
+                line-height: 1.5;
+            }
+
+            &_tags {
+                position: absolute;
+                padding: 0.5rem 1rem;
+                border-radius: 10px;
+                background-color: var(--secondary-color);
+                top: -25px;
+
+                p {
+                    color: #fff;
+                }
+            }
+        }
+
+        @media screen and (min-width: 2000px) {
+            width: 470px;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+        }
+
+        @media screen and (max-width: 300px) {
+            width: 100%;
+            margin: 1rem;
+        }
+    }
+
+    &_empty {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        p {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #000;
+        }
+    }
+}

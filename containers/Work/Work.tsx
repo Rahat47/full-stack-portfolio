@@ -10,13 +10,7 @@ type Props = {
     works: Works[];
 };
 
-const filters = [
-    'UI/UX',
-    'Web Development',
-    'Mobile Development',
-    'Game Development',
-    'All',
-];
+const filters = ['All', 'UI/UX', 'Frontend', 'Backend', 'Mobile'];
 
 const Work = ({ works }: Props) => {
     const [activeFilter, setActiveFilter] = useState(filters[0]);
@@ -27,7 +21,23 @@ const Work = ({ works }: Props) => {
     const [filteredWorks, setFilteredWorks] = useState<Works[]>(works);
 
     const handleWorkFilter = (filter: string) => {
-        console.log(filter);
+        setActiveFilter(filter);
+        setAnimateCard({
+            y: 100,
+            opacity: 0,
+        });
+
+        setTimeout(() => {
+            setAnimateCard({ y: 0, opacity: 1 });
+
+            if (filter === 'All') {
+                setFilteredWorks(works);
+            } else {
+                setFilteredWorks(
+                    works.filter(work => work.tags.includes(filter))
+                );
+            }
+        }, 500);
     };
 
     return (
@@ -59,6 +69,12 @@ const Work = ({ works }: Props) => {
                 transition={{ duration: 0.5, delayChildren: 0.5 }}
                 className={styles.work_portfolio}
             >
+                {!filteredWorks.length && (
+                    <div className={styles.work_portfolio_empty}>
+                        <p>No works found</p>
+                    </div>
+                )}
+
                 {filteredWorks.map(item => (
                     <div
                         key={item.id}
@@ -94,15 +110,9 @@ const Work = ({ works }: Props) => {
                                     rel='noopener noreferrer'
                                 >
                                     <motion.div
-                                        whileHover={{
-                                            scale: [1, 0.9],
-                                        }}
-                                        whileInView={{
-                                            scale: [0, 1],
-                                        }}
-                                        transition={{
-                                            duration: 0.25,
-                                        }}
+                                        whileInView={{ scale: [0, 1] }}
+                                        whileHover={{ scale: [1, 0.9] }}
+                                        transition={{ duration: 0.25 }}
                                         className='app__flex'
                                     >
                                         <AiFillEye />
@@ -115,21 +125,32 @@ const Work = ({ works }: Props) => {
                                     rel='noopener noreferrer'
                                 >
                                     <motion.div
-                                        whileHover={{
-                                            scale: [1, 0.9],
-                                        }}
-                                        whileInView={{
-                                            scale: [0, 1],
-                                        }}
-                                        transition={{
-                                            duration: 0.25,
-                                        }}
+                                        whileHover={{ scale: [1, 0.9] }}
+                                        whileInView={{ scale: [0, 1] }}
+                                        transition={{ duration: 0.25 }}
                                         className='app__flex'
                                     >
                                         <AiFillGithub />
                                     </motion.div>
                                 </a>
                             </motion.div>
+                        </div>
+
+                        <div
+                            className={`${styles.work_portfolio_item_info} app__flex`}
+                        >
+                            <h4 className='bold_text'>{item.title}</h4>
+                            <p className='p_text' style={{ marginTop: 10 }}>
+                                {item.description.length > 100
+                                    ? item.description.substring(0, 100) + '...'
+                                    : item.description}
+                            </p>
+
+                            <div
+                                className={`${styles.work_portfolio_item_info_tags} app__flex`}
+                            >
+                                <p className='p_text'>{item.tags[0]}</p>
+                            </div>
                         </div>
                     </div>
                 ))}
@@ -138,4 +159,4 @@ const Work = ({ works }: Props) => {
     );
 };
 
-export default Work;
+export default AppWrap(Work, 3, 'work');
