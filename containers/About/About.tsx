@@ -52,4 +52,4 @@ const About: FC<Props> = ({ abouts }) => {
     );
 };
 
-export default AppWrap<Props>('about', '', About, 2);
+export default AppWrap<Props>(About, 2, 'about');

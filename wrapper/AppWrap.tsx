@@ -2,10 +2,11 @@ import { ComponentType } from 'react';
 import { NavigationDots, SocialMedia } from '../components';
 
 export function AppWrap<T>(
-    idName: string,
-    classNames: string,
     Component: ComponentType<T>,
-    sectionId: number
+    sectionId: number,
+
+    idName?: string,
+    classNames?: string
 ) {
     return function HOC(hocProps: T) {
         return (

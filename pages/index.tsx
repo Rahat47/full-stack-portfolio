@@ -8,22 +8,23 @@ import {
     Testimonial,
     Work,
 } from '../containers';
-import { Abouts } from '../models/models';
-import { getAbouts } from '../services/queries';
+import type { Abouts, Works } from '../models/models';
+import { getAbouts, getWorks } from '../services/queries';
 
 import styles from '../styles/Home.module.scss';
 
 type Props = {
     abouts: Abouts[];
+    works: Works[];
 };
 
-const Home: NextPage<Props> = ({ abouts }) => {
+const Home: NextPage<Props> = ({ abouts, works }) => {
     return (
         <div className={styles.app}>
             <Navbar />
             <Header />
             <About abouts={abouts} />
-            <Work />
+            <Work works={works} />
             <Skills />
             <Testimonial />
             <Footer />
@@ -35,12 +36,14 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
     const abouts = getAbouts();
+    const works = getWorks();
 
-    const responses = await Promise.all([abouts]);
+    const responses = await Promise.all([abouts, works]);
 
     return {
         props: {
             abouts: responses[0],
+            works: responses[1],
         },
     };
 };

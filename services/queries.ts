@@ -1,5 +1,5 @@
 import { gql } from 'graphql-request';
-import { Abouts } from '../models/models';
+import { Abouts, Works } from '../models/models';
 import client from './cmsClient';
 
 export const getAbouts = async () => {
@@ -26,4 +26,34 @@ export const getAbouts = async () => {
     const result = await client.request<resType>(query);
 
     return result.abouts;
+};
+
+export const getWorks = async () => {
+    type resType = {
+        works: Works[];
+    };
+
+    const query = gql`
+        query GetWorks {
+            works(first: 100) {
+                codeLink
+                createdAt
+                description
+                id
+                projectLink
+                imageUrl {
+                    height
+                    url
+                    width
+                }
+                slug
+                tags
+                title
+            }
+        }
+    `;
+
+    const result = await client.request<resType>(query);
+
+    return result.works;
 };

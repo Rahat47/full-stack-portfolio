@@ -86,4 +86,4 @@ const Header = () => {
     );
 };
 
-export default AppWrap('home', '', Header, 1);
+export default AppWrap(Header, 1, 'home');

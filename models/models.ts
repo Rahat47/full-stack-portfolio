@@ -9,3 +9,19 @@ export interface Abouts {
     };
     createdAt: string;
 }
+
+export interface Works {
+    id: string;
+    createdAt: string;
+    codeLink: string;
+    projectLink: string;
+    title: string;
+    description: string;
+    slug: string;
+    imageUrl: {
+        height: number | null;
+        width: number | null;
+        url: string;
+    };
+    tags: string[];
+}
