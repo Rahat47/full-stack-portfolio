@@ -24,7 +24,6 @@ export const getAbouts = async () => {
     `;
 
     const result = await client.request<resType>(query);
-    console.log(result);
 
     return result.abouts;
 };

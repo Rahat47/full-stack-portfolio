@@ -7,5 +7,5 @@ export interface Abouts {
         width: number;
         url: string;
     };
-    createdAt?: string;
+    createdAt: string;
 }

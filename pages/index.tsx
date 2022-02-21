@@ -34,11 +34,13 @@ const Home: NextPage<Props> = ({ abouts }) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-    const abouts = await getAbouts();
+    const abouts = getAbouts();
+
+    const responses = await Promise.all([abouts]);
 
     return {
         props: {
-            abouts,
+            abouts: responses[0],
         },
     };
 };

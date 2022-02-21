@@ -1,5 +1,6 @@
 import styles from './header.module.scss';
 import { motion, Variants } from 'framer-motion';
+import AppWrap from '../../wrapper/AppWrap';
 
 import images from '../../constants/images';
 import Image from 'next/image';
@@ -85,4 +86,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default AppWrap('home', '', Header, 1);

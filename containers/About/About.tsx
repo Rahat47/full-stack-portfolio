@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import styles from './about.module.scss';
 import { Abouts } from '../../models/models';
+import AppWrap from '../../wrapper/AppWrap';
 
 interface Props {
     abouts: Abouts[];
@@ -22,7 +23,7 @@ const About: FC<Props> = ({ abouts }) => {
                 {abouts.map(about => (
                     <motion.div
                         key={about.id}
-                        whileInView={{ opacity: 1 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
                         whileHover={{ scale: 1.1 }}
                         transition={{ duration: 0.5, type: 'tween' }}
                         className={styles.profiles__item}
@@ -51,4 +52,4 @@ const About: FC<Props> = ({ abouts }) => {
     );
 };
 
-export default About;
+export default AppWrap('about', '', About, 2);
