@@ -66,6 +66,7 @@ const Header = () => {
                     <Image src={images.circle} alt='profile_circle' />
                 </motion.div>
             </motion.div>
+
             <motion.div
                 variants={scaleVariants}
                 whileInView={'whileInView'}

@@ -1,4 +1,4 @@
-import type { NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 import { Navbar } from '../components';
 import {
     About,
@@ -8,15 +8,21 @@ import {
     Testimonial,
     Work,
 } from '../containers';
+import { Abouts } from '../models/models';
+import { getAbouts } from '../services/queries';
 
 import styles from '../styles/Home.module.scss';
 
-const Home: NextPage = () => {
+type Props = {
+    abouts: Abouts[];
+};
+
+const Home: NextPage<Props> = ({ abouts }) => {
     return (
         <div className={styles.app}>
             <Navbar />
             <Header />
-            <About />
+            <About abouts={abouts} />
             <Work />
             <Skills />
             <Testimonial />
@@ -26,3 +32,13 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getStaticProps: GetStaticProps = async () => {
+    const abouts = await getAbouts();
+
+    return {
+        props: {
+            abouts,
+        },
+    };
+};
