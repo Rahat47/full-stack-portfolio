@@ -40,3 +40,18 @@ export interface Skill {
         url: string;
     };
 }
+
+export interface WorkExperiences {
+    id: string;
+    createdAt: string;
+    company: string;
+    description: string;
+    name: string;
+}
+
+export interface Experiences {
+    id: string;
+    createdAt: string;
+    year: string;
+    works: WorkExperiences[];
+}

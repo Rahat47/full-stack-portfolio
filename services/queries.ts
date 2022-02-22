@@ -1,5 +1,5 @@
 import { gql } from 'graphql-request';
-import { Abouts, Skill, Works } from '../models/models';
+import { Abouts, Experiences, Skill, Works } from '../models/models';
 import client from './cmsClient';
 
 export const getAbouts = async () => {
@@ -85,4 +85,31 @@ export const getSkills = async () => {
     const result = await client.request<resType>(query);
 
     return result.skills;
+};
+
+export const getExperiences = async () => {
+    type resType = {
+        experiences: Experiences[];
+    };
+
+    const query = gql`
+        query GetExperiences {
+            experiences(orderBy: createdAt_DESC) {
+                createdAt
+                year
+                works(first: 10) {
+                    company
+                    createdAt
+                    description
+                    id
+                    name
+                }
+                id
+            }
+        }
+    `;
+
+    const result = await client.request<resType>(query);
+
+    return result.experiences;
 };

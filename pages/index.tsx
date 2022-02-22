@@ -8,8 +8,13 @@ import {
     Testimonial,
     Work,
 } from '../containers';
-import type { Abouts, Skill, Works } from '../models/models';
-import { getAbouts, getSkills, getWorks } from '../services/queries';
+import type { Abouts, Experiences, Skill, Works } from '../models/models';
+import {
+    getAbouts,
+    getExperiences,
+    getSkills,
+    getWorks,
+} from '../services/queries';
 
 import styles from '../styles/Home.module.scss';
 
@@ -17,19 +22,20 @@ type Props = {
     abouts: Abouts[];
     works: Works[];
     skills: Skill[];
+    experiences: Experiences[];
 };
 
-const Home: NextPage<Props> = ({ abouts, works, skills }) => {
+const Home: NextPage<Props> = ({ abouts, works, skills, experiences }) => {
     return (
-        <div className={styles.app}>
+        <main className={styles.app}>
             <Navbar />
             <Header />
             <About abouts={abouts} />
             <Work works={works} />
-            <Skills skills={skills} />
+            <Skills skills={skills} experiences={experiences} />
             <Testimonial />
             <Footer />
-        </div>
+        </main>
     );
 };
 
@@ -39,14 +45,16 @@ export const getStaticProps: GetStaticProps = async () => {
     const abouts = getAbouts();
     const works = getWorks();
     const skills = getSkills();
+    const experiences = getExperiences();
 
-    const responses = await Promise.all([abouts, works, skills]);
+    const responses = await Promise.all([abouts, works, skills, experiences]);
 
     return {
         props: {
             abouts: responses[0],
             works: responses[1],
             skills: responses[2],
+            experiences: responses[3],
         },
     };
 };

@@ -1,16 +1,17 @@
 import styles from './skills.module.scss';
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AppWrap from '../../wrapper/AppWrap';
 import ReactTooltip from 'react-tooltip';
 import Image from 'next/image';
-import type { Skill } from '../../models/models';
+import type { Experiences, Skill } from '../../models/models';
+import React from 'react';
 
-type Props = {
+interface Props {
     skills: Skill[];
-};
+    experiences: Experiences[];
+}
 
-const Skills = ({ skills }: Props) => {
+const Skills = ({ skills, experiences }: Props) => {
     return (
         <>
             <h2 className='head_text'>
@@ -42,9 +43,64 @@ const Skills = ({ skills }: Props) => {
                         </motion.div>
                     ))}
                 </motion.div>
+
+                <motion.div className={styles.skills__experience}>
+                    {experiences.map(expr => (
+                        <motion.div
+                            className={styles.skills__experience__item}
+                            key={expr.id}
+                        >
+                            <div
+                                className={styles.skills__experience__item_year}
+                            >
+                                <p className='bold_text'>
+                                    {new Date(expr.year).getFullYear()}
+                                </p>
+                            </div>
+
+                            <motion.div
+                                className={
+                                    styles.skills__experience__item_works
+                                }
+                            >
+                                {expr.works.map(work => (
+                                    <React.Fragment key={work.id}>
+                                        <motion.div
+                                            key={work.id}
+                                            whileInView={{ opacity: [0, 1] }}
+                                            transition={{ duration: 0.5 }}
+                                            className={
+                                                styles.skills__experience__item_works__item
+                                            }
+                                            data-tip={work.name}
+                                            data-for={work.name}
+                                        >
+                                            <h4 className='bold_text'>
+                                                {work.name}
+                                            </h4>
+                                            <p className='p_text'>
+                                                {work.company}
+                                            </p>
+                                        </motion.div>
+
+                                        <ReactTooltip
+                                            id={work.name}
+                                            effect='solid'
+                                            arrowColor='#fff'
+                                            class={styles.tooltip}
+                                            key={`work-${work.id}`}
+                                        >
+                                            {work.description}
+                                        </ReactTooltip>
+                                    </React.Fragment>
+                                ))}
+                            </motion.div>
+                        </motion.div>
+                    ))}
+                </motion.div>
             </div>
         </>
     );
 };
 
-export default Skills;
+export default AppWrap(Skills, 4, 'skills');
