@@ -25,3 +25,18 @@ export interface Works {
     };
     tags: string[];
 }
+
+export interface Skill {
+    id: string;
+    name: string;
+    bgColor: {
+        hex: string;
+        css: string;
+    };
+    createdAt: string;
+    icon: {
+        height: number;
+        width: number;
+        url: string;
+    };
+}

@@ -10,7 +10,7 @@ type Props = {
     works: Works[];
 };
 
-const filters = ['All', 'UI/UX', 'Frontend', 'Backend', 'Mobile'];
+const filters = ['All', 'UI/UX', 'Frontend', 'Backend', 'Fullstack'];
 
 const Work = ({ works }: Props) => {
     const [activeFilter, setActiveFilter] = useState(filters[0]);
