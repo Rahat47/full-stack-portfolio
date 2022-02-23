@@ -5,6 +5,7 @@ import ReactTooltip from 'react-tooltip';
 import Image from 'next/image';
 import type { Experiences, Skill } from '../../models/models';
 import React from 'react';
+import MotionWrap from '../../wrapper/MotionWrap';
 
 interface Props {
     skills: Skill[];
@@ -29,7 +30,14 @@ const Skills = ({ skills, experiences }: Props) => {
                         >
                             <div
                                 className='app__flex'
-                                // style={{ backgroundColor: skill.bgColor.css }}
+                                style={{
+                                    backgroundColor: `rgba(
+                                        ${skill.bgColor.rgba.r},
+                                        ${skill.bgColor.rgba.g},
+                                        ${skill.bgColor.rgba.b},
+                                        0.15
+                                    )`,
+                                }}
                             >
                                 <Image
                                     src={skill.icon.url}
@@ -103,4 +111,9 @@ const Skills = ({ skills, experiences }: Props) => {
     );
 };
 
-export default AppWrap(Skills, 4, 'skills');
+export default AppWrap(
+    MotionWrap(Skills, styles.skill),
+    4,
+    'skills',
+    'app__whitebg'
+);

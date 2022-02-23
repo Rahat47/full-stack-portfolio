@@ -69,6 +69,12 @@ export const getSkills = async () => {
                 bgColor {
                     hex
                     css
+                    rgba {
+                        r
+                        g
+                        b
+                        a
+                    }
                 }
                 createdAt
                 icon {

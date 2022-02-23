@@ -4,6 +4,7 @@ import Image from 'next/image';
 import styles from './about.module.scss';
 import { Abouts } from '../../models/models';
 import AppWrap from '../../wrapper/AppWrap';
+import MotionWrap from '../../wrapper/MotionWrap';
 
 interface Props {
     abouts: Abouts[];
@@ -52,4 +53,9 @@ const About: FC<Props> = ({ abouts }) => {
     );
 };
 
-export default AppWrap<Props>(About, 2, 'about');
+export default AppWrap<Props>(
+    MotionWrap<Props>(About, styles.about),
+    2,
+    'about',
+    'app__whitebg'
+);

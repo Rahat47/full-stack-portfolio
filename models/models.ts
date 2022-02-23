@@ -32,6 +32,12 @@ export interface Skill {
     bgColor: {
         hex: string;
         css: string;
+        rgba: {
+            r: number;
+            g: number;
+            b: number;
+            a: number;
+        };
     };
     createdAt: string;
     icon: {

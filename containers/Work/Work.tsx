@@ -5,6 +5,7 @@ import styles from './work.module.scss';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Works } from '../../models/models';
+import MotionWrap from '../../wrapper/MotionWrap';
 
 type Props = {
     works: Works[];
@@ -159,4 +160,9 @@ const Work = ({ works }: Props) => {
     );
 };
 
-export default AppWrap(Work, 3, 'work');
+export default AppWrap(
+    MotionWrap(Work, styles.work),
+    3,
+    'work',
+    'app__primarybg'
+);

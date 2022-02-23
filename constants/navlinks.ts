@@ -7,18 +7,18 @@ export const navlinks = [
     },
     {
         id: 3,
-        name: 'Contact',
-        link: '#contact',
-    },
-    {
-        id: 4,
         name: 'Work',
         link: '#work',
     },
     {
-        id: 5,
+        id: 4,
         name: 'Skills',
         link: '#skills',
+    },
+    {
+        id: 5,
+        name: 'Contact',
+        link: '#contact',
     },
     {
         id: 6,
