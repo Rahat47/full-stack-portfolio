@@ -61,3 +61,27 @@ export interface Experiences {
     year: string;
     works: WorkExperiences[];
 }
+
+export interface Brands {
+    id: string;
+    createdAt: string;
+    title: string;
+    imageUrl: {
+        height: number;
+        width: number;
+        url: string;
+    };
+}
+
+export interface Testimonials {
+    id: string;
+    createdAt: string;
+    name: string;
+    company: string;
+    feedback: string;
+    imageUrl: {
+        height: number;
+        width: number;
+        url: string;
+    };
+}

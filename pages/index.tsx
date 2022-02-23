@@ -8,11 +8,20 @@ import {
     Testimonial,
     Work,
 } from '../containers';
-import type { Abouts, Experiences, Skill, Works } from '../models/models';
+import type {
+    Abouts,
+    Brands,
+    Experiences,
+    Skill,
+    Testimonials,
+    Works,
+} from '../models/models';
 import {
     getAbouts,
+    getBrands,
     getExperiences,
     getSkills,
+    getTestimonials,
     getWorks,
 } from '../services/queries';
 
@@ -23,9 +32,18 @@ type Props = {
     works: Works[];
     skills: Skill[];
     experiences: Experiences[];
+    brands: Brands[];
+    testimonials: Testimonials[];
 };
 
-const Home: NextPage<Props> = ({ abouts, works, skills, experiences }) => {
+const Home: NextPage<Props> = ({
+    abouts,
+    works,
+    skills,
+    experiences,
+    brands,
+    testimonials,
+}) => {
     return (
         <main className={styles.app}>
             <Navbar />
@@ -33,7 +51,7 @@ const Home: NextPage<Props> = ({ abouts, works, skills, experiences }) => {
             <About abouts={abouts} />
             <Work works={works} />
             <Skills skills={skills} experiences={experiences} />
-            <Testimonial />
+            <Testimonial brands={brands} testimonials={testimonials} />
             <Footer />
         </main>
     );
@@ -46,8 +64,17 @@ export const getStaticProps: GetStaticProps = async () => {
     const works = getWorks();
     const skills = getSkills();
     const experiences = getExperiences();
+    const brands = getBrands();
+    const testimonials = getTestimonials();
 
-    const responses = await Promise.all([abouts, works, skills, experiences]);
+    const responses = await Promise.all([
+        abouts,
+        works,
+        skills,
+        experiences,
+        brands,
+        testimonials,
+    ]);
 
     return {
         props: {
@@ -55,6 +82,8 @@ export const getStaticProps: GetStaticProps = async () => {
             works: responses[1],
             skills: responses[2],
             experiences: responses[3],
+            brands: responses[4],
+            testimonials: responses[5],
         },
     };
 };

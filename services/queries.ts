@@ -1,5 +1,12 @@
 import { gql } from 'graphql-request';
-import { Abouts, Experiences, Skill, Works } from '../models/models';
+import {
+    Abouts,
+    Brands,
+    Experiences,
+    Skill,
+    Testimonials,
+    Works,
+} from '../models/models';
 import client from './cmsClient';
 
 export const getAbouts = async () => {
@@ -118,4 +125,56 @@ export const getExperiences = async () => {
     const result = await client.request<resType>(query);
 
     return result.experiences;
+};
+
+export const getBrands = async () => {
+    type resType = {
+        brands: Brands[];
+    };
+
+    const query = gql`
+        query GetBrands {
+            brands(orderBy: createdAt_DESC) {
+                id
+                createdAt
+                imageUrl {
+                    height
+                    width
+                    url
+                }
+                title
+            }
+        }
+    `;
+
+    const result = await client.request<resType>(query);
+
+    return result.brands;
+};
+
+export const getTestimonials = async () => {
+    type resType = {
+        testimonials: Testimonials[];
+    };
+
+    const query = gql`
+        query GetTestimonials {
+            testimonials(orderBy: createdAt_DESC) {
+                company
+                createdAt
+                feedback
+                id
+                imageUrl {
+                    height
+                    url
+                    width
+                }
+                name
+            }
+        }
+    `;
+
+    const result = await client.request<resType>(query);
+
+    return result.testimonials;
 };
