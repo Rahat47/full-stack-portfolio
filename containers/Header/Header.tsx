@@ -74,12 +74,19 @@ const Header = () => {
                 className={styles.header__circles}
             >
                 {floatingImages.map((img, index) => (
-                    <div
+                    <motion.div
                         key={index}
                         className={`app__flex ${styles.circle_cmp}`}
+                        drag
+                        dragConstraints={{
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                        }}
                     >
                         <Image src={img} alt='circle' />
-                    </div>
+                    </motion.div>
                 ))}
             </motion.div>
         </header>

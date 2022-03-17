@@ -1,4 +1,5 @@
 import type { GetStaticProps, NextPage } from 'next';
+import Head from 'next/head';
 import { Navbar } from '../components';
 import {
     About,
@@ -45,15 +46,24 @@ const Home: NextPage<Props> = ({
     testimonials,
 }) => {
     return (
-        <main className={styles.app}>
-            <Navbar />
-            <Header />
-            <About abouts={abouts} />
-            <Work works={works} />
-            <Skills skills={skills} experiences={experiences} />
-            <Testimonial brands={brands} testimonials={testimonials} />
-            <Footer />
-        </main>
+        <>
+            <Head>
+                <title>Creative Portfolio</title>
+                <meta
+                    name='description'
+                    content='A creative portfolio template, made with Next.js, SCSS, GraphCMS and framer motion'
+                />
+            </Head>
+            <main className={styles.app}>
+                <Navbar />
+                <Header />
+                <About abouts={abouts} />
+                <Work works={works} />
+                <Skills skills={skills} experiences={experiences} />
+                <Testimonial brands={brands} testimonials={testimonials} />
+                <Footer />
+            </main>
+        </>
     );
 };
 

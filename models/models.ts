@@ -85,3 +85,12 @@ export interface Testimonials {
         url: string;
     };
 }
+
+export interface Contact {
+    id: string;
+    createdAt: string;
+    email: string;
+    message: string;
+    name: string;
+    updatedAt: string;
+}
